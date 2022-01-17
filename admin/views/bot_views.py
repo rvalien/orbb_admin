@@ -21,3 +21,14 @@ class ReactionView(ModelView):
         'trigger',
         'reaction_list'
     ]
+
+
+class ActivityListView(ModelView):
+    can_edit = True
+    can_create = False
+    can_delete = True
+    can_view_details = True
+
+    form_columns = [
+        'activity',
+    ]

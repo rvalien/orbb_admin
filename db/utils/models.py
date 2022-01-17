@@ -19,3 +19,7 @@ class BookClubDeadline(BaseTable):
 class AddReaction(BaseTable):
     trigger = sa.Column(sa.String, nullable=False, doc='триггер слово')
     reaction_list = sa.Column(sa.String, nullable=True, doc='реакции')
+
+
+class Presence(BaseTable):
+    activity = sa.Column(sa.String, nullable=True, doc='активности')

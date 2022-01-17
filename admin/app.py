@@ -15,12 +15,13 @@ def create_app() -> Flask:
 
     admin = Admin(app, name='Orbb Admin', index_view=AdminIndexView(name='📃', url='/'), template_mode='bootstrap4')
 
-    from admin.views.bot_views import BookClubView, ReactionView
+    from admin.views.bot_views import BookClubView, ReactionView, ActivityListView
     from admin.views.users import UsersView
 
     admin.add_view(UsersView(models.Users, current_session, name='дни рождения'))
     admin.add_view(BookClubView(models.BookClubDeadline, current_session, name='Книжный Клуб'))
     admin.add_view(ReactionView(models.AddReaction, current_session, name='Реакции Бота'))
+    admin.add_view(ActivityListView(models.Presence, current_session, name='Статусы Бота'))
 
     return cast(Flask, admin.app)
 
