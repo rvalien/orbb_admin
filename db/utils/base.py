@@ -8,11 +8,11 @@ from sqlalchemy.orm import Mapper, Query, Session, scoped_session, sessionmaker
 from sqlalchemy_utils import generic_repr
 
 convention = {
-    'ix': 'ix_%(column_0_label)s',
-    'uq': 'uq_%(table_name)s_%(column_0_name)s',
-    'ck': 'ck_%(table_name)s_%(constraint_name)s',
-    'fk': 'fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s',
-    'pk': 'pk_%(table_name)s',
+    "ix": "ix_%(column_0_label)s",
+    "uq": "uq_%(table_name)s_%(column_0_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "pk": "pk_%(table_name)s",
 }
 metadata = MetaData(naming_convention=convention)
 
@@ -21,14 +21,14 @@ def classname_to_tablename(name: str) -> str:
     result: List[str] = []
 
     last_index = 0
-    for match in re.finditer(r'(?P<abbreviation>[A-Z]+(?![a-z]))|(?P<word>[A-Za-z][a-z]+)|(?P<digit>\d+)', name):
+    for match in re.finditer(r"(?P<abbreviation>[A-Z]+(?![a-z]))|(?P<word>[A-Za-z][a-z]+)|(?P<digit>\d+)", name):
         if match.start() != last_index:
             raise ValueError(f'Could not translate class name "{name}" to table name')
 
         last_index = match.end()
         result.append(match.group().lower())
 
-    return '_'.join(result)
+    return "_".join(result)
 
 
 @as_declarative(metadata=metadata)

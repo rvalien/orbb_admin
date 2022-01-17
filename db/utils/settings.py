@@ -15,7 +15,7 @@ JsonSerializer = partial(
     json.dumps,
     ensure_ascii=False,
     indent=True,
-    default=partial(custom_pydantic_encoder, {type(re.compile('')): lambda v: v.pattern}),
+    default=partial(custom_pydantic_encoder, {type(re.compile("")): lambda v: v.pattern}),
 )
 
 
@@ -26,10 +26,10 @@ class BaseDBModel(BaseModel):
 
     @property
     def engine(self) -> Engine:
-        self.engine_config.setdefault('json_serializer', JsonSerializer)
-        self.engine_config.setdefault('executemany_mode', 'values')
-        self.engine_config.setdefault('connect_args', {})
-        self.engine_config['connect_args'].setdefault('application_name', socket.gethostname())
+        self.engine_config.setdefault("json_serializer", JsonSerializer)
+        self.engine_config.setdefault("executemany_mode", "values")
+        self.engine_config.setdefault("connect_args", {})
+        self.engine_config["connect_args"].setdefault("application_name", socket.gethostname())
         return create_engine(str(self.url), **self.engine_config, echo=self.echo)
 
     def setup_db(self) -> None:
@@ -38,7 +38,7 @@ class BaseDBModel(BaseModel):
 
 class DBSettings(BaseDBModel, BaseSettings):
     class Config:
-        env_prefix = 'DB_'
+        env_prefix = "DB_"
 
     def setup_db(self) -> None:
         metadata.bind = self.engine

@@ -8,10 +8,10 @@ def create_all() -> None:
     db_settings = DBSettings()
 
     db_settings.setup_db()
-    echo('creating')
+    echo("creating")
     metadata.create_all()
-    echo('complete!')
+    echo("complete")
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     create_all()
